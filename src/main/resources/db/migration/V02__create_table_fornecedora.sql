@@ -7,6 +7,7 @@ CREATE TABLE fornecedora(
 	data_cadastro DATETIME NOT NULL,
 	estado VARCHAR(2) NOT NULL,
 	cidade VARCHAR(200) NOT NULL,
+	logradouro VARCHAR(255),
 	bairro VARCHAR(200),
 	cep VARCHAR(20),
 	complemento VARCHAR(200),
