@@ -7,8 +7,8 @@ public class BancoNaoEncontradoException extends EntidadeNaoEncontradaException 
 		super(mensagem);
 	}
 
-	public BancoNaoEncontradoException(Long fornecedoraId) {
-		this(String.format("Não existe uma fornecedora com código %d", fornecedoraId));
+	public BancoNaoEncontradoException(Long bancoId) {
+		this(String.format("Não existe um Banco com código %d", bancoId));
 	}
 
 }
