@@ -1,25 +1,17 @@
-package com.gaiagalhardo.reviva.domain.model;
+package com.gaiagalhardo.reviva.api.v1.model.input;
 
-import javax.persistence.Embeddable;
-
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Data
 @Getter
 @Setter
-@Embeddable
-public class Endereco {
+public class EnderecoInput {
 
 	private String estado;
-
 	private String cidade;
-
 	private String logradouro;
-
 	private String bairro;
 	private String cep;
 	private String complemento;
-
+	
 }
