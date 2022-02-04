@@ -1,0 +1,8 @@
+CREATE TABLE banco(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	nome VARCHAR(200) NOT NULL,
+	conta VARCHAR(100),
+	digito VARCHAR(2),
+	agencia VARCHAR(100),
+	tipo_conta VARCHAR(100)
+);
