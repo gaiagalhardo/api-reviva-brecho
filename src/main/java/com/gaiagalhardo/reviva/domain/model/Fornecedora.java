@@ -43,12 +43,22 @@ public class Fornecedora {
 	@Embedded
 	private Endereco endereco;
 
+	private String fone;
 	private String email;
 	private String instagram;
 
 	@ManyToOne
 	@JoinColumn(name = "id_banco")
 	private Banco banco;
+	
+	private String conta;
+
+	private String digito;
+
+	private String agencia;
+
+	@Column(name = "tipo_conta")
+	private String tipoConta;
 	
 	@Column(name = "chave_pix")
 	private String chavePix;

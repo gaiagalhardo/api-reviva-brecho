@@ -13,7 +13,6 @@ import lombok.Setter;
 @Embeddable
 public class Endereco {
 
-	private String pais;
 	private String estado;
 	
 	@NotBlank
