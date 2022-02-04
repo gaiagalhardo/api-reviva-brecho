@@ -5,11 +5,11 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.gaiagalhardo.reviva.domain.model.Fornecedora;
+import com.gaiagalhardo.reviva.domain.model.Banco;
 
 @Repository
-public interface FornecedoraRepository extends JpaRepository<Fornecedora, Long>{
+public interface BancoRepository extends JpaRepository<Banco, Long> {
 
-	Optional<Fornecedora> findByEmail(String email);
-	
+	Optional<Banco> findByNome(String nome);
+
 }

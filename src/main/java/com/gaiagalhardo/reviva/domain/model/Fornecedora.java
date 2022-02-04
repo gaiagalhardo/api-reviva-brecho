@@ -1,6 +1,7 @@
 package com.gaiagalhardo.reviva.domain.model;
 
 import java.time.OffsetDateTime;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -8,6 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -24,13 +29,14 @@ public class Fornecedora {
 	@Id
 	private Long id;
 	
-	private String codigo;
+	private String codigo = gerarCodigo();
 	private String nome;
 	private String apelido;
 	
 	@Column(name = "data_aniversario")
 	private OffsetDateTime dataAniversario;
 	
+	@CreationTimestamp
 	@Column(name = "data_cadastro")
 	private OffsetDateTime dataCadastro;
 
@@ -40,7 +46,20 @@ public class Fornecedora {
 	private String email;
 	private String instagram;
 
-	@Embedded
-	private DadosBancarios dadosBancarios;
+	@ManyToOne
+	@JoinColumn(name = "id_banco")
+	private Banco banco;
+	
+	@Column(name = "chave_pix")
+	private String chavePix;
 
+	private String pix;
+
+	
+	private String gerarCodigo() {
+		String result = UUID.randomUUID().toString();
+		String codigoPersonalizado = "R" + result.replaceAll("[^a-zA-Z]","").toUpperCase().substring(0, 4);
+		return codigoPersonalizado;
+	}
+	
 }

@@ -11,11 +11,12 @@ CREATE TABLE fornecedora(
 	bairro VARCHAR(200),
 	cep VARCHAR(20),
 	complemento VARCHAR(200),
-	banco VARCHAR(100),
-	numero_conta VARCHAR(100),
-	digito_conta VARCHAR(2),
-	agencia VARCHAR(100),
-	tipo_conta VARCHAR(100),
+	email VARCHAR(100),
+	instagram VARCHAR(50), 	
+	id_banco INT,
 	chave_pix VARCHAR(100),
-	pix VARCHAR(100)	
+	pix VARCHAR(100),
+	
+	CONSTRAINT fk_fornecedoraBanco FOREIGN KEY (id_banco) REFERENCES banco (id)
+	
 );
