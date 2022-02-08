@@ -16,5 +16,10 @@ public class FornecedoraInputDisassembler {
 	public Fornecedora toDomainObject(FornecedoraInput fornecedoraInput) {
 		return modelMapper.map(fornecedoraInput, Fornecedora.class);
 	}
+	
+	public void copyToDomainObject(FornecedoraInput fornecedoraInput, Fornecedora fornecedora) {
+
+		modelMapper.map(fornecedoraInput, fornecedora);
+	}
 
 }

@@ -6,10 +6,12 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -21,6 +23,7 @@ import com.gaiagalhardo.reviva.api.v1.assembler.FornecedoraResumoModelAssembler;
 import com.gaiagalhardo.reviva.api.v1.model.FornecedoraDetails;
 import com.gaiagalhardo.reviva.api.v1.model.FornecedoraSummary;
 import com.gaiagalhardo.reviva.api.v1.model.input.FornecedoraInput;
+import com.gaiagalhardo.reviva.domain.exception.EntidadeNaoEncontradaException;
 import com.gaiagalhardo.reviva.domain.exception.FornecedoraNaoEncontradaException;
 import com.gaiagalhardo.reviva.domain.exception.NegocioException;
 import com.gaiagalhardo.reviva.domain.model.Fornecedora;
@@ -68,6 +71,17 @@ public class FornecedoraController {
 			return fornecedoraResumoModelAssembler.toModel(fornecedoraService.salvar(fornecedora));
 		} catch (FornecedoraNaoEncontradaException e) {
 			throw new NegocioException(e.getMessage());
+		}
+	}
+	
+	@PutMapping("/{id}")
+	public FornecedoraDetails atualizar(@PathVariable Long id, @RequestBody @Validated FornecedoraInput fornecedoraInput) {
+		try {
+			Fornecedora fornecedoraAtual = fornecedoraService.buscarOuFalhar(id);
+			fornecedoraInputDisassembler.copyToDomainObject(fornecedoraInput, fornecedoraAtual);
+			return fornecedoraModelAssembler.toModel(fornecedoraService.salvar(fornecedoraAtual));
+		}catch (EntidadeNaoEncontradaException e) {
+			throw new NegocioException(e.getMessage(), e);
 		}
 	}
 	
