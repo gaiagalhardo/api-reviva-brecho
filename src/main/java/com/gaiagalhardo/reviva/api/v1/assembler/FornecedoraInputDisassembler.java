@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.gaiagalhardo.reviva.api.v1.model.input.FornecedoraInput;
+import com.gaiagalhardo.reviva.domain.model.Banco;
 import com.gaiagalhardo.reviva.domain.model.Fornecedora;
 
 @Component
@@ -19,6 +20,8 @@ public class FornecedoraInputDisassembler {
 	
 	public void copyToDomainObject(FornecedoraInput fornecedoraInput, Fornecedora fornecedora) {
 
+		fornecedora.setBanco(new Banco());
+		
 		modelMapper.map(fornecedoraInput, fornecedora);
 	}
 
